@@ -16,11 +16,11 @@ class ViewController: UIViewController {
     }
     @IBOutlet weak var dataPicker: UIDatePicker!
     let numberRange = 100000
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     @IBAction func calculateBtnAction(_ sender: Any) {
         
         // Make calculating on background thread
@@ -46,13 +46,18 @@ class ViewController: UIViewController {
             }
         }
     }
+    
     func isnNumberPrime(_ number: Int) -> Bool {
-        if number == 2 {
+        
+        if number == 2 || number == 3 {
             return true
         } else if number < 2 {
             return false
         } else {
-            for i in 3..<number {
+            
+            //  Check the simplicity of the number to the root of this number
+            let endNumber = Int(sqrt(Double(number)))
+            for i in 2...endNumber {
                 if number.isMultiple(of: i) {
                     return false
                 }
